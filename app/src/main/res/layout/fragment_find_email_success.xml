@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.findemail.FindEmailSuccessFragment">
+
+        <ImageButton
+            android:id="@+id/btn_find_email_success_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="3dp"
+            android:src="@drawable/ic_keep_in_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_find_email_success_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_in_input_find_email"
+            android:textColor="@color/black_343434"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_find_email_success_back" />
+
+        <TextView
+            android:id="@+id/tv_find_email_success"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/border_black_line_under"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="6dp"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_find_email_success_title"
+            tools:text="android@keepin.com" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

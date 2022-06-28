@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.keepin.android.util.StringValidChecker" />
+
+        <import type="com.keepin.android.presentation.friendupdate.FriendUpdateMode" />
+
+        <variable
+            name="mode"
+            type="FriendUpdateMode" />
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.friendupdate.FriendUpdateViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.friendupdate.FriendUpdateFragment">
+
+        <ImageButton
+            android:id="@+id/btn_friend_update_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_friend_update"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="@{viewModel.friendNameValid == StringValidChecker.VALID}"
+            android:fontFamily="@font/noto_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@{mode == FriendUpdateMode.CREATE ? @string/friend_update_register : @string/sign_up_confirm}"
+            android:textColor="@{viewModel.friendNameValid == StringValidChecker.VALID ? @color/green_15bd6f : @color/gray_cccccc}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_friend_update_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_friend_update_back"
+            tools:text="등록하기" />
+
+        <TextView
+            android:id="@+id/tv_friend_update_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/friend_update_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_friend_update_back" />
+
+        <EditText
+            android:id="@+id/et_friend_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{viewModel.friendName.isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@{mode == FriendUpdateMode.CREATE ? @string/friend_update_register_hint : @string/friend_update_update_hint}"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:paddingHorizontal="10dp"
+            android:text="@={viewModel.friendName}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_friend_update_title"
+            tools:text="김키핀"
+            tools:background="@drawable/border_black_line_under"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_friend_update_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/friend_update_duplicate"
+            android:textColor="@color/red_f17272"
+            android:textSize="14dp"
+            app:isVisible="@{viewModel.friendNameValid == StringValidChecker.NOTVALID}"
+            app:layout_constraintEnd_toEndOf="@id/et_friend_update"
+            app:layout_constraintTop_toBottomOf="@id/et_friend_update"
+            tools:ignore="TextContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

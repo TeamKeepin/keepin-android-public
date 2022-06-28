@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.home.HomeViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_home_keepin_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.home.HomeFragment">
+
+            <TextView
+                android:id="@+id/tv_home_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="68dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:text="@{viewModel.userName}"
+                android:textColor="@color/green_15bd6f"
+                android:textSize="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="윤정" />
+
+            <TextView
+                android:id="@+id/tv_home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gmarket_medium"
+                android:text="@string/home_title"
+                android:textColor="@color/black_343434"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_home_nickname"
+                app:layout_constraintStart_toEndOf="@id/tv_home_nickname"
+                app:layout_constraintTop_toTopOf="@id/tv_home_nickname" />
+
+            <TextView
+                android:id="@+id/tv_home_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:includeFontPadding="false"
+                android:text='@{viewModel.welcomeText == null ? "" : context.getString(viewModel.welcomeText)}'
+                android:textColor="@color/black_343434"
+                android:textSize="22dp"
+                app:layout_constraintStart_toStartOf="@id/tv_home_nickname"
+                app:layout_constraintTop_toBottomOf="@id/tv_home_nickname"
+                tools:text="키핀은 아름다워요" />
+
+            <ImageView
+                android:id="@+id/img_random_keepin"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/gray_f9f9f9"
+                android:scaleType="centerCrop"
+                app:imageCoil="@{viewModel.keepIn.photo}"
+                app:layout_constraintBottom_toTopOf="@id/tv_random_keepin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_home_welcome" />
+
+            <TextView
+                android:id="@+id/tv_random_keepin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:text="@{viewModel.keepIn.title}"
+                android:textColor="@color/black_575757"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toTopOf="@id/layout_coming_reminder"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="PM이 탕수육 사줬다." />
+
+            <ImageView
+                android:id="@+id/img_home_keepin_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_empty_eyes"
+                app:isVisible="@{viewModel.keepIn == null}"
+                app:layout_constraintBottom_toTopOf="@id/tv_home_keepin_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/img_random_keepin"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_home_keepin_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:text="@string/empty_home_keepin"
+                android:textColor="@color/gray_cccccc"
+                android:textSize="14dp"
+                app:isVisible="@{viewModel.keepIn == null}"
+                app:layout_constraintBottom_toBottomOf="@id/img_random_keepin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_home_keepin_empty"
+                tools:ignore="TextContrastCheck" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_coming_reminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_f3f5f8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_coming_reminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/home_coming_event"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_coming_reminder_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_empty_speech"
+                    app:isVisible="@{viewModel.reminderList.size == 0}"
+                    app:layout_constraintBottom_toTopOf="@id/tv_coming_reminder_empty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_coming_reminder"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_coming_reminder_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/empty_home_reminder"
+                    android:textColor="@color/gray_cccccc"
+                    android:textSize="14dp"
+                    app:isVisible="@{viewModel.reminderList.size == 0}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_coming_reminder_empty" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_first_reminder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/border_white_fill_12"
+                    app:isVisible="@{viewModel.reminderList.size != 0}"
+                    app:layout_constraintBottom_toTopOf="@id/layout_second_reminder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_coming_reminder"
+                    app:layout_constraintVertical_chainStyle="packed">
+
+                    <View
+                        android:id="@+id/view_first_reminder_importance"
+                        android:layout_width="12dp"
+                        android:layout_height="0dp"
+                        android:background="@{viewModel.reminderList[0].isImportant ? @drawable/border_green_fill_left_12 : @drawable/border_gray_fill_left_12}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@drawable/border_gray_fill_left_12" />
+
+                    <TextView
+                        android:id="@+id/tv_first_reminder_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.reminderList[0].date}"
+                        android:textColor="@color/black_575757"
+                        android:textSize="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/view_first_reminder_importance"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="06.10" />
+
+                    <View
+                        android:id="@+id/view_first_reminder_divider"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@color/gray_a5a5a5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_first_reminder_date"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_first_reminder_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:text="@{viewModel.reminderList[0].title}"
+                        android:textColor="@color/black_575757"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/view_first_reminder_divider"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="박윤정 집들이" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_second_reminder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="@drawable/border_white_fill_12"
+                    app:isVisible="@{viewModel.reminderList.size == 2}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_first_reminder">
+
+                    <View
+                        android:id="@+id/view_second_reminder_importance"
+                        android:layout_width="12dp"
+                        android:layout_height="0dp"
+                        android:background="@{viewModel.reminderList[1].isImportant ? @drawable/border_green_fill_left_12 : @drawable/border_gray_fill_left_12}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@drawable/border_green_fill_left_12" />
+
+                    <TextView
+                        android:id="@+id/tv_second_reminder_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.reminderList[1].date}"
+                        android:textColor="@color/black_575757"
+                        android:textSize="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/view_second_reminder_importance"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="06.23" />
+
+                    <View
+                        android:id="@+id/view_second_reminder_divider"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@color/gray_a5a5a5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_second_reminder_date"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_second_reminder_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:text="@{viewModel.reminderList[1].title}"
+                        android:textColor="@color/black_575757"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/view_second_reminder_divider"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="아부지 생신" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

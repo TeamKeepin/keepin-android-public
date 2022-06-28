@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navi_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.keepin.android.presentation.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_archiveDetailFragment"
+            app:destination="@id/archiveDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/archiveFragment"
+        android:name="com.keepin.android.presentation.archive.ArchiveFragment"
+        android:label="ArchiveFragment"
+        tools:layout="@layout/fragment_archive">
+        <argument
+            android:name="keepinTaken"
+            android:defaultValue="true"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_archiveFragment_to_archiveDetailFragment"
+            app:destination="@id/archiveDetailFragment" />
+        <action
+            android:id="@+id/action_archiveFragment_to_searchPresentFragment"
+            app:destination="@id/searchPresentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/keepInFragment"
+        android:name="com.keepin.android.presentation.keepin.KeepInFragment"
+        android:label="KeepInFragment"
+        tools:layout="@layout/fragment_keep_in">
+        <action
+            android:id="@+id/action_keepInFragment_to_friendSearchFragment"
+            app:destination="@id/friendSearchFragment" />
+        <argument
+            android:name="detailPresent"
+            android:defaultValue="@null"
+            app:argType="com.keepin.android.data.entity.response.ResponseDetailPresent"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_keepInFragment_to_keepInCompleteFragment"
+            app:destination="@id/keepInCompleteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/friendSearchFragment"
+        android:name="com.keepin.android.presentation.friendsearch.FriendSearchFragment"
+        android:label="friendSearchFragment"
+        tools:layout="@layout/fragment_friend_search">
+        <argument
+            android:name="friendsList"
+            android:defaultValue="@null"
+            app:argType="com.keepin.android.data.entity.response.Friend[]"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_friendSearchFragment_to_friendUpdateFragment"
+            app:destination="@id/friendUpdateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reminderFragment"
+        android:name="com.keepin.android.presentation.reminder.ReminderFragment"
+        android:label="ReminderFragment"
+        tools:layout="@layout/fragment_reminder">
+        <action
+            android:id="@+id/action_reminderFragment_to_reminderUpdateFragment"
+            app:destination="@id/reminderUpdateFragment" />
+        <action
+            android:id="@+id/action_reminderFragment_to_keepInFragment"
+            app:destination="@id/keepInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.keepin.android.presentation.mypage.MyPageFragment"
+        android:label="MyPageFragment"
+        tools:layout="@layout/fragment_my_page">
+        <action
+            android:id="@+id/action_myPageFragment_to_friendDetailFragment"
+            app:destination="@id/friendDetailFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_friendUpdateFragment"
+            app:destination="@id/friendUpdateFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/friendUpdateFragment"
+        android:name="com.keepin.android.presentation.friendupdate.FriendUpdateFragment"
+        android:label="FriendUpdateFragment"
+        tools:layout="@layout/fragment_friend_update">
+        <argument
+            android:name="friendId"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="friendName"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/friendDetailFragment"
+        android:name="com.keepin.android.presentation.frienddetail.FriendDetailFragment"
+        android:label="FriendDetailFragment"
+        tools:layout="@layout/fragment_friend_detail">
+        <argument
+            android:name="friendId"
+            app:argType="string" />
+        <argument
+            android:name="previousIsFriendList"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_friendDetailFragment_to_friendUpdateFragment"
+            app:destination="@id/friendUpdateFragment" />
+        <action
+            android:id="@+id/action_friendDetailFragment_to_archiveDetailFragment"
+            app:destination="@id/archiveDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchPresentFragment"
+        android:name="com.keepin.android.presentation.archive.SearchPresentFragment"
+        android:label="SearchPresentFragment"
+        tools:layout="@layout/fragment_search_present">
+        <action
+            android:id="@+id/action_searchPresentFragment_to_searchPresentCategoryFragment"
+            app:destination="@id/searchPresentCategoryFragment"
+            app:popUpTo="@layout/fragment_search_present" />
+        <action
+            android:id="@+id/action_searchPresentFragment_to_archiveDetailFragment"
+            app:destination="@id/archiveDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reminderUpdateFragment"
+        android:name="com.keepin.android.presentation.reminderupdate.ReminderUpdateFragment"
+        android:label="ReminderUpdateFragment"
+        tools:layout="@layout/fragment_reminder_update">
+        <argument
+            android:name="reminderId"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchPresentCategoryFragment"
+        android:name="com.keepin.android.presentation.archive.SearchPresentCategoryFragment"
+        android:label="SearchPresentCategoryFragment"
+        tools:layout="@layout/fragment_search_present_category">
+        <action
+            android:id="@+id/action_searchPresentCategoryFragment_to_archiveDetailFragment"
+            app:destination="@id/archiveDetailFragment" />
+        <argument
+            android:name="categoryKeyword"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/archiveDetailFragment"
+        android:name="com.keepin.android.presentation.archive.ArchiveDetailFragment"
+        android:label="ArchiveDetailFragment"
+        tools:layout="@layout/fragment_archive_detail">
+        <argument
+            android:name="keepinIdx"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_archiveDetailFragment_to_keepInFragment"
+            app:destination="@id/keepInFragment" />
+        <action
+            android:id="@+id/action_archiveDetailFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+        <action
+            android:id="@+id/action_archiveDetailFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
+        <action
+            android:id="@+id/action_archiveDetailFragment_to_friendListFragment"
+            app:destination="@id/friendListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/friendListFragment"
+        android:name="com.keepin.android.presentation.friendList.FriendListFragment"
+        android:label="FriendListFragment"
+        tools:layout="@layout/fragment_friend_list">
+        <argument
+            android:name="friendsList"
+            app:argType="com.keepin.android.data.entity.response.Friend[]" />
+        <action
+            android:id="@+id/action_friendListFragment_to_friendDetailFragment"
+            app:destination="@id/friendDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.keepin.android.presentation.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_profileUpdateFragment"
+            app:destination="@id/profileUpdateFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_passwordUpdateFragment"
+            app:destination="@id/passwordUpdateFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_teamKeepInFragment"
+            app:destination="@id/teamKeepInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileUpdateFragment"
+        android:name="com.keepin.android.presentation.profileupdate.ProfileUpdateFragment"
+        android:label="ProfileUpdateFragment"
+        tools:layout="@layout/fragment_profile_update">
+        <argument
+            android:name="name"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/passwordUpdateFragment"
+        android:name="com.keepin.android.presentation.passwordupdate.PasswordUpdateFragment"
+        android:label="PasswordUpdateFragment"
+        tools:layout="@layout/fragment_password_update">
+        <action
+            android:id="@+id/action_passwordUpdateFragment_to_findPasswordFragment"
+            app:destination="@id/findPasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/findPasswordFragment"
+        android:name="com.keepin.android.presentation.findpassword.FindPasswordFragment"
+        android:label="FindPasswordFragment"
+        tools:layout="@layout/fragment_find_password" />
+
+    <fragment
+        android:id="@+id/keepInCompleteFragment"
+        android:name="com.keepin.android.presentation.keepin.KeepInCompleteFragment"
+        android:label="KeepInCompleteFragment">
+        <action
+            android:id="@+id/action_keepInCompleteFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/teamKeepInFragment"
+        android:name="com.keepin.android.presentation.team.TeamKeepInFragment"
+        android:label="TeamKeepInFragment"
+        tools:layout="@layout/fragment_team_keep_in" />
+    <fragment
+        android:id="@+id/detailImageFragment"
+        android:name="com.keepin.android.presentation.archive.DetailImageFragment"
+        android:label="DetailImageFragment">
+        <argument
+            android:name="detailImage"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+    </fragment>
+</navigation>

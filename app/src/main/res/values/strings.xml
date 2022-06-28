@@ -1,0 +1,272 @@
+<resources>
+    <string name="app_name">Keepin</string>
+    <string name="main_menu_home">home</string>
+    <string name="main_menu_archive">archive</string>
+    <string name="main_menu_keep_in">keepin</string>
+    <string name="main_menu_reminder">reminder</string>
+    <string name="main_menu_my_page">mypage</string>
+
+    <!-- BindingFragment -->
+    <string name="binding_error">Binding not initialized to reference the view.</string>
+
+    <!-- HomeFragment -->
+    <string name="home_title">님</string>
+    <string name="home_coming_event">다가오는 이벤트</string>
+    <string name="home_welcome0">직접 준 선물도 키핀해 보세요.</string>
+    <string name="home_welcome1">감동받은 메시지도 키핀하세요.</string>
+    <string name="home_welcome2">감사한 순간을 공유해 주세요!</string>
+    <string name="home_welcome3">지금 키핀하러 가볼까요?</string>
+    <string name="home_welcome4">화면을 아래로 당겨볼까요?</string>
+    <string name="home_welcome5">오늘도 선물 같은 하루!</string>
+    <string name="home_welcome6">선물은 미리미리 골라야죠!</string>
+    <string name="home_welcome7">예전에 받은 그 선물, 키핀해요!</string>
+
+    <!-- ArchiveFragment -->
+    <string name="archive_title">선물 모아보기</string>
+    <string name="archive_taken">받은</string>
+    <string name="archive_given">준</string>
+    <string name="archive_new">최신순</string>
+    <string name="archive_detail_friends">%s님%s에게 %s</string>
+    <string name="archive_detail_memo_title">느낌/마음 기록</string>
+
+    <!-- FriendListFragment -->
+    <string name="friend_list_title">%s님%s</string>
+
+    <!-- KeepinFragment -->
+    <string name="keep_in_register_keep_in">키핀하기</string>
+    <string name="keep_in_register_title">선물에 이름을 붙여 주세요.</string>
+    <string name="keep_in_max_title">(최대 20자)</string>
+    <string name="keep_in_hint_title">키핀이가 준 선물</string>
+    <string name="keep_in_register_photo">사진을 등록해 주세요.</string>
+    <string name="keep_in_max_photo">(최대 3장)</string>
+    <string name="keep_in_max_photo_toast">사진 업로드는 3장까지만 가능합니다.</string>
+    <string name="keep_in_register_type">어떤 선물인가요?</string>
+    <string name="keep_in_type_get">받은 선물</string>
+    <string name="keep_in_type_give">준 선물</string>
+    <string name="keep_in_register_friend">누구에게 받은/준 선물인가요?</string>
+    <string name="keep_in_max_friend">(최대 5명)</string>
+    <string name="keep_in_hint_friend">친구의 이름을 입력해 주세요</string>
+    <string name="keep_in_register_when">언제 받은/준 선물인가요?</string>
+    <string name="keep_in_hint_when">YYYY.MM.DD</string>
+    <string name="keep_in_register_category">선물 카테고리를 선택해 주세요.</string>
+    <string name="keep_in_max_category">(최대 2개)</string>
+    <string name="keep_in_register_memo">더 잘 키핀해 볼까요?</string>
+    <string name="keep_in_max_memo">(최대 200자)</string>
+    <string name="keep_in_hint_memo">선물을 주고 받은 상황, 느낌 등을 기록해 보세요!</string>
+    <string name="keep_in_complete">키핀되었습니다!</string>
+    <string name="keep_in_modify_complete">완료</string>
+    <string name="keep_in_modify_toast">수정이 완료되었습니다.</string>
+
+    <!-- ReminderFragment -->
+    <string name="reminder_edit">편집</string>
+    <string name="reminder_cancel">취소</string>
+    <string name="reminder_delete">삭제</string>
+    <string name="reminder_title">리마인더</string>
+    <string name="reminder_upcoming_title">다가오는 이벤트</string>
+    <string name="reminder_upcoming_empty">다가오는 이벤트가 없습니다.</string>
+    <string name="reminder_past_title">지난 이벤트</string>
+    <string name="reminder_past_empty">지난 이벤트가 없습니다.</string>
+
+    <!-- ReminderUpdateFragment -->
+    <string name="reminder_update_done">완료</string>
+    <string name="reminder_update_title_hint">이벤트 이름</string>
+    <string name="reminder_update_important">중요</string>
+    <string name="reminder_update_done_edit">수정이 완료되었습니다.</string>
+    <string name="reminder_update_done_register">이벤트가 등록되었습니다.</string>
+
+    <!-- MyPageFragment -->
+    <string name="my_page_title">" 님"</string>
+    <string name="my_page_keepin_total">총 선물</string>
+    <string name="my_page_keepin_taken">받은 선물</string>
+    <string name="my_page_keepin_given">준 선물</string>
+    <string name="my_page_friends">친구 모아보기</string>
+
+    <!-- FriendFragment -->
+    <string name="friend_get">받은</string>
+    <string name="friend_give">준</string>
+    <string name="friend_title">님과</string>
+    <string name="friend_detail_option_delete">삭제하기</string>
+    <string name="friend_detail_title">주고받은 선물</string>
+    <string name="friend_detail_present_count">%d개</string>
+    <string name="friend_detail_memo">친구 메모</string>
+    <string name="friend_detail_memo_line">%d/5줄</string>
+    <string name="friend_detail_memo_hint">친구의 취향을 기록해 보세요.\n최대 5줄까지 입력 가능합니다.</string>
+    <string name="friend_update_title">친구의 이름을 입력해 주세요.</string>
+    <string name="friend_update_register">등록하기</string>
+    <string name="friend_update_update">수정하기</string>
+    <string name="friend_update_register_hint">등록할 이름을 입력해 주세요.(최대 5자)</string>
+    <string name="friend_update_update_hint">수정할 이름을 입력해 주세요.(최대 5자)</string>
+    <string name="friend_update_toast">%s님이 등록되었습니다.</string>
+    <string name="friend_update_duplicate">중복된 이름입니다.</string>
+
+    <!-- SearchPresentFragment -->
+    <string name="search_hint">검색어를 입력해 주세요</string>
+    <string name="search_category_title">카테고리로 게시물을 찾아 보세요.</string>
+
+    <!-- FriendSearchFragment -->
+    <string name="friend_search_title">친구를 선택해 주세요.</string>
+    <string name="friend_search_complete">완료</string>
+    <string name="friend_search_new_friend">새 친구 등록하기</string>
+    <string name="friend_search_list">친구 리스트</string>
+    <string name="friend_search_searched">검색된 친구</string>
+    <string name="friend_search_selected">선택된 친구</string>
+    <string name="friend_list_empty">등록된 친구가 없습니다.</string>
+    <string name="friend_search_searched_empty">검색된 친구가 없습니다.</string>
+    <string name="friend_search_selected_empty">선택된 친구가 없습니다.</string>
+
+    <!-- category -->
+    <string name="category_birth">생일</string>
+    <string name="category_anniversary">기념일</string>
+    <string name="category_celeb">축하</string>
+    <string name="category_compliment">칭찬</string>
+    <string name="category_support">응원</string>
+    <string name="category_thanks">감사</string>
+    <string name="category_surprise">깜짝</string>
+    <string name="category_etc">기타</string>
+
+    <!-- PickerDialog -->
+    <string name="dialog_picker_cancel">취소</string>
+    <string name="dialog_picker_confirm">확인</string>
+    <string name="alarm_picker_today">당일 (오전 9:00)</string>
+    <string name="alarm_picker_1_day_before">1일 전 (오전 9:00)</string>
+    <string name="alarm_picker_2_day_before">2일 전 (오전 9:00)</string>
+    <string name="alarm_picker_3_day_before">3일 전 (오전 9:00)</string>
+    <string name="alarm_picker_1_week_before">1주일 전 (오전 9:00)</string>
+    <string name="alarm_picker_selected_today">당일</string>
+    <string name="alarm_picker_selected_1_day_before">1일 전</string>
+    <string name="alarm_picker_selected_2_day_before">2일 전</string>
+    <string name="alarm_picker_selected_3_day_before">3일 전</string>
+    <string name="alarm_picker_selected_1_week_before">1주일 전</string>
+
+    <!-- ProfileFragment -->
+    <string name="profile_title">프로필 편집</string>
+    <string name="profile_name">이름</string>
+    <string name="profile_password">비밀번호</string>
+    <string name="profile_phone">휴대폰 번호</string>
+    <string name="profile_email">이메일</string>
+    <string name="profile_birth_day">생일</string>
+    <string name="profile_keepin">Keepin 정보</string>
+    <string name="profile_service">서비스 이용약관</string>
+    <string name="profile_information">개인정보 처리방침</string>
+    <string name="profile_feedback">의견 보내기</string>
+    <string name="profile_insta">Team Keepin</string>
+    <string name="profile_logout">로그아웃</string>
+    <string name="profile_secession">계정 삭제</string>
+    <string name="profile_email_receiver">officialkeepin@gmail.com</string>
+    <string name="profile_name_update_hint">최대 5자까지 입력 가능합니다.</string>
+    <string name="profile_password_update_hint">현재 비밀번호</string>
+    <string name="profile_password_update_new_hint">새로운 비밀번호</string>
+    <string name="profile_password_update_new_check_hint">비밀번호 확인</string>
+    <string name="profile_find_password_info">가입 시 입력한 이메일로\n임시 비밀번호를 전송해 드립니다.</string>
+    <string name="profile_find_password_hint">keepin@keepin.co.kr</string>
+
+    <!-- SplashFragment -->
+    <string name="sign_in_main_email_login">이메일 로그인</string>
+    <string name="sign_in_main_kakao_login">카카오 로그인</string>
+    <string name="sign_in_main_question">아직 회원이 아니신가요?</string>
+    <string name="sign_in_main_sign_up">회원가입</string>
+
+    <!-- SignInInputFragment -->
+    <string name="sign_in_input_email">이메일</string>
+    <string name="sign_in_input_pw">비밀번호</string>
+    <string name="sign_in_input_login">로그인</string>
+    <string name="sign_in_input_find_email">이메일 찾기</string>
+    <string name="sign_in_input_find_pw">비밀번호 찾기</string>
+
+    <!-- SignUpFragment -->
+    <string name="sign_up">회원가입</string>
+    <string name="sign_up_next">다음</string>
+    <string name="sign_up_confirm">완료</string>
+    <string name="sign_up_email_title">이메일을 입력해 주세요.</string>
+    <string name="sign_up_email_hint">keepin@keepin.co.kr</string>
+    <string name="sign_up_email_wrong">이메일 형식이 올바르지 않습니다.</string>
+    <string name="sign_up_password_title">비밀번호를 입력해 주세요.</string>
+    <string name="sign_up_password_hint">비밀번호(영문+숫자 8자 이상)</string>
+    <string name="sign_up_password_wrong">영문+숫자 8자 이상 입력해 주세요.</string>
+    <string name="sign_up_password_check_title">비밀번호를 확인해 주세요.</string>
+    <string name="sign_up_password_check_hint">비밀번호를 다시 한번 입력해 주세요.</string>
+    <string name="sign_up_password_check_wrong">비밀번호가 일치하지 않습니다.</string>
+    <string name="sign_up_name_title">이름을 입력해주세요.</string>
+    <string name="sign_up_name_hint">최대 5자까지 입력 가능합니다.</string>
+    <string name="sign_up_birth_day_title">생일을 입력해 주세요.</string>
+    <string name="sign_up_birth_day_hint">YYYY.MM.DD</string>
+    <string name="sign_up_phone_number_title">휴대폰 번호를 입력해 주세요.</string>
+    <string name="sign_up_phone_number_hint">010–0000–0000</string>
+    <string name="sign_up_phone_country_code">KR</string>
+    <string name="sign_up_important">[필수]</string>
+    <string name="sign_up_service_terms"><u>이용약관</u></string>
+    <string name="sign_up_divider">" 및 "</string>
+    <string name="sign_up_personal_information"><u>개인정보처리방침</u></string>
+
+    <!-- BaseDialog -->
+    <string name="base_dialog_confirm">확인</string>
+    <string name="base_dialog_cancel">취소</string>
+    <string name="base_dialog_message_stop_write">작성 중인 글이 저장되지 않습니다.\n취소하시겠습니까?</string>
+    <string name="base_dialog_message_after_delete_auth">계정이 삭제되었습니다.\n키핀을 이용해 주셔서 감사합니다.</string>
+    <string name="base_dialog_message_before_delete_auth">계정 삭제 시 키핀한 기록이 모두 삭제됩니다.\n정말 삭제하시겠습니까?</string>
+    <string name="base_dialog_message_before_delete_post">삭제하시겠습니까?\n</string>
+    <string name="base_dialog_message_before_delete_friend">친구와의 모든 기록이 삭제됩니다.\n정말 삭제하시겠습니까?</string>
+    <string name="base_dialog_message_before_logout">다시 키핀하려면 로그인해야 합니다.\n로그아웃하시겠습니까?</string>
+    <string name="base_dialog_message_login_error">이메일/비밀번호를 다시 확인해 주세요.</string>
+    <string name="base_dialog_email_error">중복된 이메일입니다.</string>
+    <string name="base_dialog_email_not_found">이름/생일/휴대폰 번호를 다시 확인해 주세요.</string>
+    <string name="base_dialog_email_not_sign">가입되지 않은 이메일입니다.</string>
+    <string name="base_dialog_password_change">임시 비밀번호가 전송되었습니다.</string>
+    <string name="base_dialog_message_stop_modify">수정 중인 글이 저장되지 않습니다.\n취소하시겠습니까?</string>
+    <string name="base_dialog_update_required">더 안정적으로 Keepin을 이용하실 수 있도록 앱을 업데이트 했어요. 업데이트를 진행하지 않으면 앱 사용이 불가하니, 아래 버튼을 눌러 업데이트를 진행해 주세요.</string>
+    <string name="base_dialog_update_confirm">업데이트</string>
+    <string name="base_dialog_update_cancel">나가기</string>
+
+    <!--Notice Dialog-->
+    <string name="notice_show_again">다시 보지 않기</string>
+
+    <!-- EmptyView -->
+    <string name="empty_home_keepin">키핀한 선물을 랜덤으로 보여드려요.</string>
+    <string name="empty_home_reminder">다가오는 이벤트가 없어요.</string>
+    <string name="empty_reminder">아직 추가한 이벤트가 없어요.</string>
+    <string name="empty_my_page">등록된 친구가 없어요!</string>
+    <string name="empty_friend_detail">아직 주고받은 선물이 없어요!</string>
+    <string name="empty_archive_present">아직 키핀한 선물이 없어요!</string>
+    <string name="empty_search_present">검색 결과가 없어요!</string>
+
+    <!-- OnBoarding -->
+    <string name="on_boarding_first">Keepin</string>
+    <string name="on_boarding_first_title">주고받은 선물을 보관하고</string>
+    <string name="on_boarding_first_content">주고받은 선물, 그 때의 마음! 모두 함께 키핀해보세요.</string>
+    <string name="on_boarding_second">Keepin mind</string>
+    <string name="on_boarding_second_title">그 순간의 마음을 간직하고</string>
+    <string name="on_boarding_second_content">주고받은 선물들을 한 눈에 모아드려요.</string>
+    <string name="on_boarding_third">Keepin touch</string>
+    <string name="on_boarding_third_title">다가오는 이벤트를 잘 챙길 수 있도록</string>
+    <string name="on_boarding_third_content">기억하고 싶은 이벤트, 이제는 잊어버리지 마세요.</string>
+    <string name="on_boarding_btn_text">Keepin 시작하기</string>
+
+    <!-- TeamKeepIn -->
+    <string name="team_keep_in_plan">Plan</string>
+    <string name="team_keep_in_yunjung">박윤정</string>
+    <string name="team_keep_in_bomin">김보민</string>
+    <string name="team_keep_in_design">Design</string>
+    <string name="team_keep_in_seohyun">정서현</string>
+    <string name="team_keep_in_chaeyeon">이채연</string>
+    <string name="team_keep_in_yeonsoo">김연수</string>
+    <string name="team_keep_in_ios">iOS</string>
+    <string name="team_keep_in_yijun">최이준</string>
+    <string name="team_keep_in_hyesu">김혜수</string>
+    <string name="team_keep_in_eunyoung">이은영</string>
+    <string name="team_keep_in_aos">Android</string>
+    <string name="team_keep_in_yunjoo">손연주</string>
+    <string name="team_keep_in_nayoung">안나영</string>
+    <string name="team_keep_in_gaeun">고가은</string>
+    <string name="team_keep_in_youngmin">김영민</string>
+    <string name="team_keep_in_server">Server</string>
+    <string name="team_keep_in_youngwoo">유영우</string>
+    <string name="team_keep_in_yungyeong">박윤경</string>
+    <string name="team_keep_in_minji">김민지</string>
+    <string name="team_keep_in_btn_text">Team Keepin이 궁금하다면?</string>
+
+    <!-- Link -->
+    <string name="link_service_terms">https://fluff-munchkin-8cc.notion.site/4c1b2962dcaf45a1a4863a18c08261e8</string>
+    <string name="link_service_personal_information">https://fluff-munchkin-8cc.notion.site/99ea54ae24564b289da492cc4b5d7c61</string>
+    <string name="link_service_link_tree">https://linktr.ee/keepin.official</string>
+    <string name="link_google_play_store">https://play.google.com/store/apps/details?id=</string>
+</resources>

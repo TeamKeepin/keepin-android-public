@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="VM"
+            type="com.keepin.android.presentation.archive.SearchPresentCategoryViewModel" />
+
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.archive.SearchPresentCategoryFragment">
+
+
+    <ImageButton
+        android:id="@+id/imgbtn_search_category_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/ic_back"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_search_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@{VM.category}"
+        android:fontFamily="@font/gmarket_medium"
+        android:includeFontPadding="false"
+        android:textSize="18sp"
+        android:textColor="@color/black_343434"
+        tools:text="기념일"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbtn_search_category_back"
+        app:layout_constraintStart_toEndOf="@+id/imgbtn_search_category_back"
+        app:layout_constraintTop_toTopOf="@+id/imgbtn_search_category_back" />
+
+    <ImageView
+        android:id="@+id/img_search_category_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="253dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgbtn_search_category_back"
+        app:srcCompat="@drawable/ic_empty_eyes" />
+
+    <TextView
+        android:id="@+id/tv_search_category_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:visibility="invisible"
+        android:text="@string/empty_search_present"
+        android:fontFamily="@font/gmarket_medium"
+        android:includeFontPadding="false"
+        android:textSize="14dp"
+        android:textColor="@color/gray_cccccc"
+        app:layout_constraintEnd_toEndOf="@+id/img_search_category_empty"
+        app:layout_constraintStart_toStartOf="@+id/img_search_category_empty"
+        app:layout_constraintTop_toBottomOf="@+id/img_search_category_empty" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search_category"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_search_category"
+        tools:listitem="@layout/item_archive_present" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

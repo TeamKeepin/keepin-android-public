@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.keepin.android.util.KeepInListSelector" />
+
+        <import type="com.keepin.android.presentation.frienddetail.FriendDetailViewModel.Memo" />
+
+        <variable
+            name="previousIsFriendList"
+            type="boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.frienddetail.FriendDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.frienddetail.FriendDetailFragment">
+
+        <ImageButton
+            android:id="@+id/btn_friend_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:importantForAccessibility="no"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_back"
+            android:visibility="@{viewModel.loading == false ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_friend_detail_option"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:importantForAccessibility="no"
+            android:paddingStart="2dp"
+            android:paddingEnd="6dp"
+            android:src="@drawable/ic_more"
+            android:visibility="@{viewModel.loading == false &amp;&amp; previousIsFriendList == false ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/btn_friend_detail_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_friend_detail_back" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.loading == false ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_friend_detail_back">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:elevation="0dp">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_friend_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_collapseMode="pin">
+
+                        <TextView
+                            android:id="@+id/tv_friend_detail_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:fontFamily="@font/gmarket_medium"
+                            android:text="@{viewModel.friendDetail.name}"
+                            android:textColor="@color/green_15bd6f"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="키핀" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gmarket_medium"
+                            android:text="@string/friend_title"
+                            android:textColor="@color/black_343434"
+                            android:textSize="20dp"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_friend_detail_nickname"
+                            app:layout_constraintStart_toEndOf="@id/tv_friend_detail_nickname"
+                            app:layout_constraintTop_toTopOf="@id/tv_friend_detail_nickname" />
+
+                        <TextView
+                            android:id="@+id/tv_friend_detail_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/gmarket_medium"
+                            android:includeFontPadding="false"
+                            android:text="@string/friend_detail_title"
+                            android:textColor="@color/black_343434"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="@id/tv_friend_detail_nickname"
+                            app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_nickname" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_friend_detail_keepin_history"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="32dp"
+                            android:background="@drawable/border_gray_fill_12"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_title">
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_keepin_total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/my_page_keepin_total"
+                                android:textColor="@color/black_343434"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toStartOf="@id/view_friend_detail_keepin_total_divider"
+                                app:layout_constraintHorizontal_chainStyle="spread"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_keepin_total_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@{@string/friend_detail_present_count(viewModel.friendDetail.total)}"
+                                android:textColor="@color/green_15bd6f"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/tv_friend_detail_keepin_total"
+                                app:layout_constraintStart_toStartOf="@id/tv_friend_detail_keepin_total"
+                                app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_keepin_total"
+                                tools:text="2개" />
+
+                            <View
+                                android:id="@+id/view_friend_detail_keepin_total_divider"
+                                android:layout_width="0.5dp"
+                                android:layout_height="0dp"
+                                android:background="@color/gray_a5a5a5"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_friend_detail_keepin_total_count"
+                                app:layout_constraintEnd_toStartOf="@id/tv_friend_detail_keepin_taken"
+                                app:layout_constraintStart_toEndOf="@id/tv_friend_detail_keepin_total"
+                                app:layout_constraintTop_toTopOf="@id/tv_friend_detail_keepin_total" />
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_keepin_taken"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/my_page_keepin_taken"
+                                android:textColor="@color/black_343434"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toStartOf="@id/view_friend_detail_keepin_taken_divider"
+                                app:layout_constraintStart_toEndOf="@id/view_friend_detail_keepin_total_divider"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_keepin_taken_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@{@string/friend_detail_present_count(viewModel.friendDetail.taken)}"
+                                android:textColor="@color/green_15bd6f"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/tv_friend_detail_keepin_taken"
+                                app:layout_constraintStart_toStartOf="@id/tv_friend_detail_keepin_taken"
+                                app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_keepin_taken"
+                                tools:text="2개" />
+
+                            <View
+                                android:id="@+id/view_friend_detail_keepin_taken_divider"
+                                android:layout_width="0.5dp"
+                                android:layout_height="0dp"
+                                android:background="@color/gray_a5a5a5"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_friend_detail_keepin_taken_count"
+                                app:layout_constraintEnd_toStartOf="@id/tv_friend_detail_keepin_given"
+                                app:layout_constraintStart_toEndOf="@id/tv_friend_detail_keepin_taken"
+                                app:layout_constraintTop_toTopOf="@id/tv_friend_detail_keepin_taken" />
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_keepin_given"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/my_page_keepin_given"
+                                android:textColor="@color/black_343434"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/view_friend_detail_keepin_taken_divider"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_keepin_given_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@{@string/friend_detail_present_count(viewModel.friendDetail.given)}"
+                                android:textColor="@color/green_15bd6f"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/tv_friend_detail_keepin_given"
+                                app:layout_constraintStart_toStartOf="@id/tv_friend_detail_keepin_given"
+                                app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_keepin_given"
+                                tools:ignore="TextContrastCheck"
+                                tools:text="2개" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_friend_detail_memo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:background="@drawable/border_gray_fill_12"
+                            android:paddingBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/layout_friend_detail_keepin_history"
+                            app:layout_constraintStart_toStartOf="@+id/layout_friend_detail_keepin_history"
+                            app:layout_constraintTop_toBottomOf="@id/layout_friend_detail_keepin_history">
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_memo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="18dp"
+                                android:fontFamily="@font/gmarket_medium"
+                                android:includeFontPadding="false"
+                                android:text="@string/friend_detail_memo"
+                                android:textColor="@color/black_343434"
+                                android:textSize="16dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageButton
+                                android:id="@+id/btn_friend_detail_pen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:background="@android:color/transparent"
+                                android:importantForAccessibility="no"
+                                android:paddingHorizontal="12dp"
+                                android:src="@drawable/ic_friend_memo_pen"
+                                android:visibility="@{viewModel.isWritingMemo == Memo.PEN ? View.VISIBLE : View.INVISIBLE}"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_friend_detail_memo"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/tv_friend_detail_memo" />
+
+                            <ImageButton
+                                android:id="@+id/btn_friend_detail_memo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:background="@android:color/transparent"
+                                android:importantForAccessibility="no"
+                                android:paddingHorizontal="12dp"
+                                android:src="@drawable/ic_friend_memo_check"
+                                android:visibility="@{viewModel.isWritingMemo == Memo.MEMO ? View.VISIBLE : View.INVISIBLE}"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_friend_detail_memo"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/tv_friend_detail_memo" />
+
+                            <EditText
+                                android:id="@+id/et_friend_detail_memo"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginHorizontal="18dp"
+                                android:layout_marginTop="16dp"
+                                android:background="@android:color/transparent"
+                                android:fontFamily="@font/noto_regular"
+                                android:gravity="top"
+                                android:hint="@string/friend_detail_memo_hint"
+                                android:importantForAutofill="no"
+                                android:includeFontPadding="false"
+                                android:inputType="textMultiLine"
+                                android:lines="5"
+                                android:text="@{viewModel.friendDetail.memo}"
+                                android:textColor="@color/black_575757"
+                                android:textSize="14dp"
+                                app:layout_constraintDimensionRatio="1:0.36"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_memo" />
+
+                            <TextView
+                                android:id="@+id/tv_friend_detail_memo_line"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/gray_cccccc"
+                                android:textSize="12dp"
+                                app:layout_constraintEnd_toEndOf="@id/et_friend_detail_memo"
+                                app:layout_constraintTop_toBottomOf="@id/et_friend_detail_memo" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="36dp"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                <TextView
+                    android:id="@+id/tv_friend_detail_give"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_bold"
+                    android:includeFontPadding="false"
+                    android:onClick="@{() -> viewModel.setListSelectorKey(KeepInListSelector.GIVEN)}"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/friend_give"
+                    android:textColor="@{viewModel.giveOrGet == KeepInListSelector.GIVEN ? @color/green_15bd6f : @color/gray_c4c4c4}"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view_friend_detail_give"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@color/green_15bd6f"
+                    android:visibility="@{viewModel.giveOrGet == KeepInListSelector.GIVEN ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@id/tv_friend_detail_give"
+                    app:layout_constraintStart_toStartOf="@id/tv_friend_detail_give"
+                    app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_give" />
+
+                <TextView
+                    android:id="@+id/tv_friend_detail_taken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/noto_bold"
+                    android:includeFontPadding="false"
+                    android:onClick="@{() -> viewModel.setListSelectorKey(KeepInListSelector.TAKEN)}"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/friend_get"
+                    android:textColor="@{viewModel.giveOrGet == KeepInListSelector.TAKEN? @color/green_15bd6f : @color/gray_c4c4c4}"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_friend_detail_give"
+                    app:layout_constraintEnd_toStartOf="@id/tv_friend_detail_give"
+                    app:layout_constraintTop_toTopOf="@id/tv_friend_detail_give" />
+
+                <View
+                    android:id="@+id/view_friend_detail_taken"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@color/green_15bd6f"
+                    android:visibility="@{viewModel.giveOrGet == KeepInListSelector.TAKEN ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@id/tv_friend_detail_taken"
+                    app:layout_constraintStart_toStartOf="@id/tv_friend_detail_taken"
+                    app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_taken" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_friend_detail_keepin"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_friend_detail_taken"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_archive_present" />
+
+                <ImageView
+                    android:id="@+id/img_friend_detail_keepin_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="86dp"
+                    android:src="@drawable/ic_empty_speech"
+                    android:visibility="@{viewModel.keepInList.size == 0 ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_friend_detail_give"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_friend_detail_keepin_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/empty_friend_detail"
+                    android:textColor="@color/gray_cccccc"
+                    android:textSize="14dp"
+                    android:visibility="@{viewModel.keepInList.size == 0 ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_friend_detail_keepin_empty" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <include
+            layout="@layout/loading_state"
+            app:loading="@{viewModel.loading == true}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

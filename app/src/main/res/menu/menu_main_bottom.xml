@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:checked="false"
+        android:icon="@drawable/ic_main_home"
+        android:title="@string/main_menu_home" />
+    <item
+        android:id="@+id/archiveFragment"
+        android:checked="false"
+        android:icon="@drawable/ic_main_archive"
+        android:title="@string/main_menu_archive" />
+    <item
+        android:id="@+id/keepInFragment"
+        android:checked="false"
+        android:icon="@drawable/ic_main_keep_in"
+        android:title="@string/main_menu_keep_in" />
+    <item
+        android:id="@+id/reminderFragment"
+        android:checked="false"
+        android:icon="@drawable/ic_main_reminder"
+        android:title="@string/main_menu_reminder" />
+    <item
+        android:id="@+id/myPageFragment"
+        android:checked="false"
+        android:icon="@drawable/ic_main_my_page"
+        android:title="@string/main_menu_my_page" />
+</menu>

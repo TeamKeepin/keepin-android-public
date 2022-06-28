@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="friend"
+            type="com.keepin.android.data.entity.response.Friend" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_friend_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:backgroundTint="@color/gray_f9f9f9"
+            android:fontFamily="@font/gmarket_medium"
+            android:gravity="start"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="28dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="20dp"
+            android:stateListAnimator="@null"
+            android:text="@{friend.name}"
+            android:textAllCaps="false"
+            android:textColor="@color/black_575757"
+            android:textSize="16dp"
+            app:cornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="김키핀" />
+
+        <ImageView
+            android:id="@+id/img_friend_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_my_page_go_friend_detail"
+            app:layout_constraintBottom_toBottomOf="@id/btn_friend_list"
+            app:layout_constraintEnd_toEndOf="@id/btn_friend_list"
+            app:layout_constraintTop_toTopOf="@id/btn_friend_list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

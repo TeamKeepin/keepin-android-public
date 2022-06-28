@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="friendSearchViewModel"
+            type="com.keepin.android.presentation.friendsearch.FriendSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_friend_search_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_friend_search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="4dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_friend_search_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:clickable="@{friendSearchViewModel.friendSelectedList.isEmpty ? false : true}"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/friend_search_complete"
+                android:textColor="@{friendSearchViewModel.friendSelectedList.isEmpty ? @color/gray_cccccc: @color/green_15bd6f}"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/btn_friend_search_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_friend_search_back" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layout_scroll_friend_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_friend_search_tool_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_friend_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_friend_search_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/friend_search_title"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_friend_search_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/gmarket_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_max_friend"
+                    android:textColor="@color/gray_a5a5a5"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@id/tv_friend_search_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_friend_search_title" />
+
+                <EditText
+                    android:id="@+id/et_friend_search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@{friendSearchViewModel.query.trim().isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+                    android:fontFamily="@font/noto_regular"
+                    android:hint="@string/keep_in_hint_friend"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:maxLength="5"
+                    android:paddingStart="33dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="6dp"
+                    android:singleLine="true"
+                    android:text="@={friendSearchViewModel.query}"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_friend_search_title" />
+
+                <ImageView
+                    android:id="@+id/img_friend_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/transparent"
+                    android:src="@{friendSearchViewModel.query.trim().isEmpty ? @drawable/ic_search_gray : @drawable/ic_search_black}"
+                    app:layout_constraintBottom_toBottomOf="@id/et_friend_search"
+                    app:layout_constraintStart_toStartOf="@id/et_friend_search"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_friend_search_add_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/friend_search_new_friend"
+                    android:textColor="@color/green_15bd6f"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_friend_search" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_friend_selected"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="42dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_friend_search_add_friend">
+
+                    <TextView
+                        android:id="@+id/tv_friend_search_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/friend_search_selected"
+                        android:textColor="@color/black_343434"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_friend_search_selected"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_friend_search_selected"
+                        tools:listitem="@layout/item_friend_select" />
+
+                    <TextView
+                        android:id="@+id/tv_friend_search_selected_empty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:text="@string/friend_search_selected_empty"
+                        android:textColor="@color/gray_cccccc"
+                        android:textSize="16dp"
+                        android:visibility="@{friendSearchViewModel.friendSelectedList.isEmpty ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_friend_search_selected" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_friend_searched"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="42dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_friend_selected">
+
+                    <TextView
+                        android:id="@+id/tv_friend_search_searched"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:includeFontPadding="false"
+                        android:text="@{friendSearchViewModel.query.trim().isEmpty ? @string/friend_search_list : @string/friend_search_searched}"
+                        android:textColor="@color/black_343434"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_friend_search_searched"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_friend_search_searched"
+                        tools:listitem="@layout/item_friend_search" />
+
+                    <TextView
+                        android:id="@+id/tv_friend_search_searched_empty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:text="@{friendSearchViewModel.query.length == 0 ? @string/friend_list_empty : @string/friend_search_searched_empty}"
+                        android:textColor="@color/gray_cccccc"
+                        android:textSize="16dp"
+                        android:visibility="@{friendSearchViewModel.friendSearchedList.isEmpty ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_friend_search_searched" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

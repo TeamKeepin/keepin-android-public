@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.keepin.android.presentation.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_signUpFirstFragment"
+            app:destination="@id/signUpFirstFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.keepin.android.presentation.onboarding.OnBoardingFragment"
+        android:label="OnBoardingFragment"
+        tools:layout="@layout/fragment_on_boarding" />
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.keepin.android.presentation.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_findEmailFragment"
+            app:destination="@id/findEmailFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_findPasswordFragment"
+            app:destination="@id/auth_findPasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFirstFragment"
+        android:name="com.keepin.android.presentation.signup.SignUpFirstFragment"
+        android:label="SignUpFirstFragment"
+        tools:layout="@layout/fragment_sign_up_first">
+        <action
+            android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
+            app:destination="@id/signUpSecondFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpSecondFragment"
+        android:name="com.keepin.android.presentation.signup.SignUpSecondFragment"
+        android:label="SignUpSecondFragment"
+        tools:layout="@layout/fragment_sign_up_second" />
+
+    <fragment
+        android:id="@+id/findEmailFragment"
+        android:name="com.keepin.android.presentation.findemail.FindEmailFragment"
+        android:label="FindEmailFragment"
+        tools:layout="@layout/fragment_find_email">
+        <action
+            android:id="@+id/action_findEmailFragment_to_findEmailSuccessFragment"
+            app:destination="@id/findEmailSuccessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/findEmailSuccessFragment"
+        android:name="com.keepin.android.presentation.findemail.FindEmailSuccessFragment"
+        android:label="fragment_find_email_success"
+        tools:layout="@layout/fragment_find_email_success">
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_findEmailSuccessFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/auth_nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/auth_findPasswordFragment"
+        android:name="com.keepin.android.presentation.findpassword.FindPasswordFragment"
+        android:label="FindPasswordFragment"
+        tools:layout="@layout/fragment_find_password" />
+
+</navigation>

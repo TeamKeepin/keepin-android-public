@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.reminderupdate.ReminderUpdateViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.reminderupdate.ReminderUpdateFragment">
+
+        <ImageButton
+            android:id="@+id/btn_reminder_update_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:src="@drawable/ic_keep_in_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_reminder_update_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:padding="16dp"
+            android:text="@string/reminder_update_done"
+            android:textColor="@color/gray_cccccc"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_reminder_update_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:fontFamily="@font/gmarket_medium"
+            android:hint="@string/reminder_update_title_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="10"
+            android:text="@={viewModel.reminderTitleAtEditText}"
+            android:textColor="@color/black_343434"
+            android:textColorHint="@color/gray_a5a5a5"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_reminder_update_close" />
+
+        <View
+            android:id="@+id/view_reminder_update_division_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/gray_cccccc"
+            app:layout_constraintTop_toBottomOf="@id/et_reminder_update_title" />
+
+        <ImageView
+            android:id="@+id/img_reminder_update_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_reminder_calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_reminder_update_division_top"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_reminder_update_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:src="@{viewModel.isAlarm? @drawable/ic_reminder_alarm_checked : @drawable/ic_reminder_alarm_unchecked}"
+            app:layout_constraintStart_toStartOf="@id/img_reminder_update_calendar"
+            app:layout_constraintTop_toBottomOf="@id/img_reminder_update_calendar"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_reminder_update_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@{viewModel.selectedEventDate}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/img_reminder_update_calendar"
+            app:layout_constraintStart_toEndOf="@id/img_reminder_update_calendar"
+            app:layout_constraintTop_toTopOf="@id/img_reminder_update_calendar" />
+
+        <TextView
+            android:id="@+id/tv_reminder_update_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@{viewModel.selectedAlarmTime}"
+            android:textColor="@{viewModel.isAlarm? @color/black_343434 : @color/gray_a5a5a5}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/img_reminder_update_alarm"
+            app:layout_constraintStart_toEndOf="@id/img_reminder_update_alarm"
+            app:layout_constraintTop_toTopOf="@id/img_reminder_update_alarm" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_reminder_update"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginEnd="24dp"
+            android:checked="@={viewModel.isAlarm}"
+            android:thumb="@drawable/selector_reminder_switch_thumb"
+            app:layout_constraintBottom_toBottomOf="@id/img_reminder_update_alarm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_reminder_update_alarm"
+            app:track="@drawable/selector_reminder_switch_track" />
+
+        <View
+            android:id="@+id/view_reminder_update_division_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/gray_cccccc"
+            app:layout_constraintTop_toBottomOf="@id/img_reminder_update_alarm" />
+
+        <CheckBox
+            android:id="@+id/check_box_reminder_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:button="@drawable/selector_reminder_update_check_box"
+            android:checked="@{viewModel.detailReminderData.isImportant==true? true : false}"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_reminder_update_division_bottom" />
+
+        <TextView
+            android:id="@+id/tv_reminder_update_important"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:fontFamily="@font/noto_regular"
+            android:text="@string/reminder_update_important"
+            android:textColor="@{viewModel.detailReminderData.isImportant==true? @color/black_343434 : @color/gray_a5a5a5}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/check_box_reminder_update"
+            app:layout_constraintStart_toEndOf="@id/check_box_reminder_update"
+            app:layout_constraintTop_toTopOf="@id/check_box_reminder_update" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

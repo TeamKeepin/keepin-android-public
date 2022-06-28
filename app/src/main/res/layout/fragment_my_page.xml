@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.mypage.MyPageViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/layout_my_page_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="32dp"
+                    app:layout_collapseMode="pin"
+                    tools:context=".presentation.mypage.MyPageFragment">
+
+                    <TextView
+                        android:id="@+id/tv_my_page_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:text="@{viewModel.userName}"
+                        android:textColor="@color/green_15bd6f"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck"
+                        tools:text="박윤정" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:text="@string/my_page_title"
+                        android:textColor="@color/black_343434"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_my_page_nickname"
+                        app:layout_constraintStart_toEndOf="@id/tv_my_page_nickname"
+                        app:layout_constraintTop_toTopOf="@id/tv_my_page_nickname" />
+
+                    <ImageButton
+                        android:id="@+id/btn_my_page_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:background="@android:color/transparent"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_my_page_setting"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_my_page_nickname"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_my_page_nickname"
+                        tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_keep_in_history"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/border_gray_fill_12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_my_page_nickname">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_my_page_keepin_total"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.33">
+
+                            <TextView
+                                android:id="@+id/tv_my_page_keepin_total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/my_page_keepin_total"
+                                android:textColor="@color/black_343434"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_my_page_keepin_total_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="9dp"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@{@string/friend_detail_present_count(viewModel.keepInCount.total)}"
+                                android:textColor="@color/green_15bd6f"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/tv_my_page_keepin_total"
+                                app:layout_constraintStart_toStartOf="@id/tv_my_page_keepin_total"
+                                app:layout_constraintTop_toBottomOf="@id/tv_my_page_keepin_total" />
+
+                            <View
+                                android:id="@+id/view_my_page_keepin_total_divider"
+                                android:layout_width="0.5dp"
+                                android:layout_height="0dp"
+                                android:layout_marginVertical="9dp"
+                                android:background="@color/gray_a5a5a5"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_my_page_keepin_taken"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toEndOf="@id/layout_my_page_keepin_total"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.33">
+
+                            <TextView
+                                android:id="@+id/tv_my_page_keepin_taken"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/my_page_keepin_taken"
+                                android:textColor="@color/black_343434"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_my_page_keepin_taken_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="9dp"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@{@string/friend_detail_present_count(viewModel.keepInCount.taken)}"
+                                android:textColor="@color/green_15bd6f"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/tv_my_page_keepin_taken"
+                                app:layout_constraintStart_toStartOf="@id/tv_my_page_keepin_taken"
+                                app:layout_constraintTop_toBottomOf="@id/tv_my_page_keepin_taken" />
+
+                            <View
+                                android:id="@+id/view_my_page_keepin_taken_divider"
+                                android:layout_width="0.5dp"
+                                android:layout_height="0dp"
+                                android:layout_marginVertical="9dp"
+                                android:background="@color/gray_a5a5a5"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_my_page_keepin_given"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toEndOf="@id/layout_my_page_keepin_taken"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.33">
+
+                            <TextView
+                                android:id="@+id/tv_my_page_keepin_given"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/my_page_keepin_given"
+                                android:textColor="@color/black_343434"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_my_page_keepin_given_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="9dp"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@{@string/friend_detail_present_count(viewModel.keepInCount.given)}"
+                                android:textColor="@color/green_15bd6f"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/tv_my_page_keepin_given"
+                                app:layout_constraintStart_toStartOf="@id/tv_my_page_keepin_given"
+                                app:layout_constraintTop_toBottomOf="@id/tv_my_page_keepin_given" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_f3f5f8"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <TextView
+                android:id="@+id/tv_my_page_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:includeFontPadding="false"
+                android:text="@string/my_page_friends"
+                android:textColor="@color/black_343434"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_my_page_friend_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@android:color/transparent"
+                android:padding="12dp"
+                android:src="@drawable/ic_my_page_friend_add"
+                app:layout_constraintBottom_toBottomOf="@id/tv_my_page_friends"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_my_page_friends"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/img_my_page_friend_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/ic_empty_no_eyes"
+                app:isVisible="@{viewModel.friendsList.size == 0}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_my_page_friends" />
+
+            <TextView
+                android:id="@+id/tv_my_page_friend_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:includeFontPadding="false"
+                android:text="@string/empty_my_page"
+                android:textColor="@color/gray_cccccc"
+                android:textSize="14dp"
+                app:isVisible="@{viewModel.friendsList.size == 0}"
+                app:layout_constraintEnd_toEndOf="@id/img_my_page_friend_empty"
+                app:layout_constraintStart_toStartOf="@id/img_my_page_friend_empty"
+                app:layout_constraintTop_toBottomOf="@id/img_my_page_friend_empty" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_my_page_friend"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_my_page_friends"
+                tools:listitem="@layout/item_my_page_friend" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

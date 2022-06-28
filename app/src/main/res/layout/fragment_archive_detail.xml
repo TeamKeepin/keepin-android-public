@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="VM"
+            type="com.keepin.android.presentation.archive.ArchiveDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btn_archive_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_back"
+            android:visibility="@{VM.loading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_archive_detail_more"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="6dp"
+            android:src="@drawable/ic_more"
+            android:visibility="@{VM.loading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/btn_archive_detail_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_archive_detail_back"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="9dp"
+            android:overScrollMode="never"
+            android:visibility="@{VM.loading ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_archive_detail_back"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_archive_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_archive_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@android:color/transparent"
+                    android:visibility="@{VM.presentDetail.data.photo.size == 1 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/vp_archive_detail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tabBackground="@drawable/selector_detail_present_indicator"
+                    app:tabIndicatorHeight="0dp" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:text="@{VM.presentDetail.data.title}"
+                    android:textColor="@color/black_343434"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_archive_detail"
+                    tools:text="김키핀이 준 선물" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@{VM.presentDetail.data.getFriendsText(@string/archive_detail_friends, @color/green_15bd6f)}"
+                    android:textColor="@color/gray_a5a5a5"
+                    android:textSize="12dp"
+                    app:drawableEndCompat="@drawable/ic_archive_detail_friends_list"
+                    app:layout_constraintStart_toStartOf="@+id/tv_archive_detail_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_archive_detail_title"
+                    tools:text="김키핀님에게 받은 선물" />
+
+                <View
+                    android:id="@+id/view_archive_detail_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/border_gray_line"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_archive_detail_name" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_memo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/archive_detail_memo_title"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    android:visibility="@{VM.presentDetail.data.record.isEmpty() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_archive_detail_divider" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_memo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/border_gray_fill_10"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:minHeight="170dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="14dp"
+                    android:text="@{VM.presentDetail.data.record}"
+                    android:textColor="@color/black_343434"
+                    android:textSize="14dp"
+                    android:visibility="@{VM.presentDetail.data.record.isEmpty() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_archive_detail_memo_title" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_first_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/border_green_line_19"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:minWidth="48dp"
+                    android:minHeight="23dp"
+                    android:text="@{VM.presentDetail.data.category[0]}"
+                    android:textColor="@color/green_15bd6f"
+                    android:textSize="12dp"
+                    android:visibility="@{VM.presentDetail.data.category.size == 0 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_archive_detail_memo"
+                    tools:text="기념일" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_second_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/border_green_line_19"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:minWidth="48dp"
+                    android:text="@{VM.presentDetail.data.category[1]}"
+                    android:textColor="@color/green_15bd6f"
+                    android:textSize="12dp"
+                    android:visibility="@{VM.presentDetail.data.category.size == 2 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_archive_detail_first_category"
+                    app:layout_constraintStart_toEndOf="@id/tv_archive_detail_first_category"
+                    app:layout_constraintTop_toTopOf="@id/tv_archive_detail_first_category"
+                    tools:text="축하" />
+
+                <TextView
+                    android:id="@+id/tv_archive_detail_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="42dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@{VM.presentDetail.data.date}"
+                    android:textColor="@color/gray_a5a5a5"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_archive_detail_memo"
+                    tools:text="2022.06.21" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            layout="@layout/loading_state"
+            app:loading="@{VM.loading}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

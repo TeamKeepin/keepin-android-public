@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="com.keepin.android.presentation.profileupdate.ProfileUpdateCategory" />
+
+        <import type="com.keepin.android.util.StringValidChecker" />
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.profileupdate.ProfileUpdateViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.profileupdate.ProfileUpdateFragment">
+
+        <ImageButton
+            android:id="@+id/btn_profile_update_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_profile_update"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="7dp"
+            android:clickable="@{viewModel.profileValid == StringValidChecker.VALID}"
+            android:fontFamily="@font/noto_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> viewModel.profileUpdate()}"
+            android:paddingHorizontal="9dp"
+            android:text="@string/friend_search_complete"
+            android:textColor="@{viewModel.profileValid == StringValidChecker.VALID ? @color/green_15bd6f : @color/gray_cccccc}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_profile_update_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_profile_update_back" />
+
+        <TextView
+            android:id="@+id/tv_profile_update_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@{viewModel.category == ProfileUpdateCategory.NAME ? @string/profile_name : @string/profile_phone}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_profile_update_back"
+            tools:text="이름" />
+
+        <EditText
+            android:id="@+id/et_profile_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{viewModel.profile.isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@{viewModel.category == ProfileUpdateCategory.NAME ? @string/profile_name_update_hint : @string/sign_up_phone_number_hint}"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="@{viewModel.category == ProfileUpdateCategory.NAME ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_CLASS_PHONE}"
+            android:maxLength="@{viewModel.category == ProfileUpdateCategory.NAME ? 5 : 13}"
+            android:maxLines="1"
+            android:paddingHorizontal="8dp"
+            android:text="@={viewModel.profile}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_update_title"
+            tools:background="@drawable/border_black_line_under"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="김키핀" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

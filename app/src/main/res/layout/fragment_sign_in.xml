@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="signInViewModel"
+            type="com.keepin.android.presentation.signin.SignInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_sign_in_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.signin.SignInFragment">
+
+        <EditText
+            android:id="@+id/et_sign_in_input_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/border_gray_line_12"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_in_input_email"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:text="@={signInViewModel.email}"
+            android:textColorHint="@color/gray_cccccc"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.17" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_in_input_delete_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@null"
+            android:onClick="@{() -> signInViewModel.clearText(signInViewModel.email)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signInViewModel.email.trim().isEmpty ? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_in_input_email"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_in_input_email"
+            app:layout_constraintTop_toTopOf="@id/et_sign_in_input_email"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/et_sign_in_input_pw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/border_gray_line_12"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_in_input_pw"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:text="@={signInViewModel.password}"
+            android:textColorHint="@color/gray_cccccc"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_in_input_email" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_in_input_delete_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@null"
+            android:onClick="@{() -> signInViewModel.clearText(signInViewModel.password)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signInViewModel.password.trim().isEmpty? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_in_input_pw"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_in_input_pw"
+            app:layout_constraintTop_toTopOf="@id/et_sign_in_input_pw"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_in_input_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="18dp"
+            android:backgroundTint="@{signInViewModel.canSignIn ? @color/green_15bd6f : @color/gray_f9f9f9}"
+            android:clickable="@{signInViewModel.canSignIn ? true : false}"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="@{() -> signInViewModel.postLogin()}"
+            android:paddingVertical="14dp"
+            android:stateListAnimator="@null"
+            android:text="@string/sign_in_input_login"
+            android:textColor="@{signInViewModel.canSignIn ? @color/white : @color/gray_cccccc}"
+            android:textSize="14dp"
+            app:cornerRadius="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_in_input_pw" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_in_input_login">
+
+            <ImageView
+                android:id="@+id/img_sign_in_input_find_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sign_in_input_find_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_sign_in_input_find_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:paddingVertical="10dp"
+                android:text="@string/sign_in_input_find_email"
+                android:textColor="@color/black_343434"
+                app:layout_constraintBottom_toBottomOf="@id/img_sign_in_input_find_email"
+                app:layout_constraintStart_toEndOf="@id/img_sign_in_input_find_email"
+                app:layout_constraintTop_toTopOf="@id/img_sign_in_input_find_email" />
+
+            <View
+                android:id="@+id/view_sign_in_input"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginStart="32dp"
+                android:background="@color/gray_cccccc"
+                app:layout_constraintBottom_toBottomOf="@id/img_sign_in_input_find_email"
+                app:layout_constraintStart_toEndOf="@id/tv_sign_in_input_find_email"
+                app:layout_constraintTop_toTopOf="@id/img_sign_in_input_find_email" />
+
+            <ImageView
+                android:id="@+id/img_sign_in_input_find_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_sign_in_input_find_pw"
+                app:layout_constraintStart_toEndOf="@id/view_sign_in_input"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_sign_in_input_find_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:paddingVertical="10dp"
+                android:text="@string/sign_in_input_find_pw"
+                android:textColor="@color/black_343434"
+                app:layout_constraintBottom_toBottomOf="@id/img_sign_in_input_find_pw"
+                app:layout_constraintStart_toEndOf="@id/img_sign_in_input_find_pw"
+                app:layout_constraintTop_toTopOf="@id/img_sign_in_input_find_pw" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

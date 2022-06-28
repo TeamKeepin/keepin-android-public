@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="present"
+            type="com.keepin.android.data.entity.response.KeepInData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_archive_present"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_archive_present"
+            imageCoil="@{present.photo}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_archive_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/gmarket_medium"
+            android:singleLine="true"
+            android:text="@{present.title}"
+            android:textColor="@color/black_343434"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@+id/img_archive_present"
+            app:layout_constraintTop_toBottomOf="@+id/img_archive_present" />
+
+        <TextView
+            android:id="@+id/tv_archive_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@{present.date}"
+            android:textColor="@color/gray_a5a5a5"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_archive_item_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_archive_item_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

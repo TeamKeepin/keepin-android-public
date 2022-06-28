@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="signUpViewModel"
+            type="com.keepin.android.presentation.signup.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_sign_up_second"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.signup.SignUpSecondFragment">
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_second_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_second_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="@{signUpViewModel.isSecondSuccess ? true : false}"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_confirm"
+            android:onClick="@{() -> signUpViewModel.signUp()}"
+            android:textColor="@{signUpViewModel.isSecondSuccess ? @color/green_15bd6f : @color/gray_cccccc}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_sign_up_second_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_sign_up_second_back" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_second_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up"
+            android:textColor="@color/black_343434"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_up_second_back" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_name_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_second_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_second_title" />
+
+        <EditText
+            android:id="@+id/et_sign_up_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{signUpViewModel.name.trim().isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_name_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="5"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@={signUpViewModel.name}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_name" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->signUpViewModel.clearText(signUpViewModel.name)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signUpViewModel.name.trim().isEmpty ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_up_name"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_name"
+            app:layout_constraintTop_toTopOf="@id/et_sign_up_name"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_birth_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_birth_day_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_second_title"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_name" />
+
+        <EditText
+            android:id="@+id/et_sign_up_birth_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{signUpViewModel.isBirthSelected ? @drawable/border_black_line_under : @drawable/border_gray_line_under}"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_birth_day_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="date"
+            android:maxLength="10"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@{signUpViewModel.birthDay}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_birth_day" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_birth_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> signUpViewModel.clearBirthDay()}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signUpViewModel.birthDay.trim().isEmpty ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_up_birth_day"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_birth_day"
+            app:layout_constraintTop_toTopOf="@id/et_sign_up_birth_day"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_phone_number_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_second_title"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_birth_day" />
+
+        <EditText
+            android:id="@+id/et_sign_up_phone_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{signUpViewModel.phoneNumber.trim().isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_phone_number_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="phone"
+            android:maxLength="13"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@={signUpViewModel.phoneNumber}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_phone_number" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->signUpViewModel.clearText(signUpViewModel.phoneNumber)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signUpViewModel.phoneNumber.trim().isEmpty ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_up_phone_number"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_phone_number"
+            app:layout_constraintTop_toTopOf="@id/et_sign_up_phone_number"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/check_box_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:button="@drawable/selector_reminder_check_box"
+            android:checked="false"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="@{() -> signUpViewModel.isCheckNotCheck()}"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_second_title"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_phone_number" />
+
+        <LinearLayout
+            android:id="@+id/layout_sign_up_second_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/check_box_service"
+            app:layout_constraintStart_toEndOf="@id/check_box_service"
+            app:layout_constraintTop_toTopOf="@id/check_box_service">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/sign_up_important"
+                android:textColor="@color/black_575757"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_sign_up_second_service_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/sign_up_service_terms"
+                android:textColor="@color/black_575757"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/sign_up_divider"
+                android:textColor="@color/black_575757"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_sign_up_second_personal_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/sign_up_personal_information"
+                android:textColor="@color/black_575757"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

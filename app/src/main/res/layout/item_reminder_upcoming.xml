@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.keepin.android.data.entity.response.Reminder" />
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.reminder.ReminderViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_upcoming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/border_white_fill_12">
+
+        <View
+            android:id="@+id/view_upcoming"
+            android:layout_width="12dp"
+            android:layout_height="0dp"
+            android:background="@{event.isImportant == true? @drawable/border_green_fill_left_12: @drawable/border_gray_fill_left_12}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_upcoming_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@{event.date}"
+            android:textColor="@color/black_575757"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view_upcoming"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_upcoming_divider"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="4dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/gray_a5a5a5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_upcoming_date"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_upcoming_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:text="@{event.title}"
+            android:textColor="@color/black_575757"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_date"
+            app:layout_constraintStart_toEndOf="@id/view_upcoming_divider"
+            app:layout_constraintTop_toTopOf="@id/tv_upcoming_date" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginEnd="10dp"
+            android:checked="@{event.isAlarm == true? true: false}"
+            android:thumb="@drawable/selector_reminder_switch_thumb"
+            android:visibility="@{viewModel.isEdit == true? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:track="@drawable/selector_reminder_switch_track" />
+
+        <CheckBox
+            android:id="@+id/check_box_upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:button="@drawable/selector_reminder_check_box"
+            android:checked="@{event.isChecked == true? true: false}"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:visibility="@{viewModel.isEdit == true? View.VISIBLE: View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

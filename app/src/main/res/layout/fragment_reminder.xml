@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.keepin.android.presentation.reminder.ReminderViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_f3f5f8"
+        tools:context=".presentation.reminder.ReminderFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_reminder_date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_reminder_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:background="@null"
+                android:src="@drawable/ic_reminder_add"
+                android:visibility="@{viewModel.isEdit ? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_reminder_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_reminder_edit"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_reminder_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{()->viewModel.setIsEdit(true)}"
+                android:text="@string/reminder_edit"
+                android:textColor="@color/gray_a5a5a5"
+                android:textSize="16dp"
+                android:visibility="@{viewModel.isEdit ? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_reminder_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{()->viewModel.cancelEdit()}"
+                android:text="@string/reminder_cancel"
+                android:textColor="@color/gray_a5a5a5"
+                android:textSize="16dp"
+                android:visibility="@{viewModel.isEdit &amp;&amp; viewModel.deleteList.size==0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_reminder_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/reminder_delete"
+                android:textColor="@color/green_15bd6f"
+                android:textSize="16dp"
+                android:visibility="@{viewModel.isEdit &amp;&amp; viewModel.deleteList.size!=0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_reminder_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/gmarket_medium"
+                android:text="@string/reminder_title"
+                android:textColor="@color/black_343434"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_reminder_edit" />
+
+            <ImageButton
+                android:id="@+id/btn_reminder_last_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@null"
+                android:clickable="@{viewModel.isEdit ? false : true}"
+                android:onClick="@{()->viewModel.setLastYear()}"
+                android:src="@drawable/ic_reminder_left_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_reminder_title"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_reminder_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@{viewModel.selectedYear}"
+                android:textColor="@color/black_343434"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/btn_reminder_last_year"
+                app:layout_constraintStart_toEndOf="@id/btn_reminder_last_year"
+                app:layout_constraintTop_toTopOf="@id/btn_reminder_last_year" />
+
+            <ImageButton
+                android:id="@+id/btn_reminder_next_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@null"
+                android:clickable="@{viewModel.isEdit ? false : true}"
+                android:onClick="@{()->viewModel.setNextYear()}"
+                android:src="@drawable/ic_reminder_right_arrow"
+                app:layout_constraintStart_toEndOf="@id/tv_reminder_year"
+                app:layout_constraintTop_toTopOf="@id/btn_reminder_last_year"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_reminder_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@null"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_reminder_last_year"
+                app:tabMode="scrollable"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/green_15bd6f"
+                app:tabTextAppearance="@style/reminder_month"
+                app:tabTextColor="@color/gray_a5a5a5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_reminder_item"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_reminder_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

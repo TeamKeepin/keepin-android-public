@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="upcomingEventSize"
+            type="int" />
+
+        <variable
+            name="pastEventSize"
+            type="int" />
+
+        <variable
+            name="monthState"
+            type="String" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="28dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_reminder_upcoming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{monthState.equals(`past`)? View.GONE:View.VISIBLE }"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_reminder_upcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:text="@string/reminder_upcoming_title"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_reminder_empty_upcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:layout_marginBottom="48dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:text="@string/reminder_upcoming_empty"
+                    android:textColor="@color/gray_cccccc"
+                    android:textSize="16dp"
+                    android:visibility="@{upcomingEventSize == 0? View.VISIBLE:View.INVISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_reminder_upcoming" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_reminder_event_upcoming"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="20dp"
+                    android:overScrollMode="never"
+                    android:visibility="@{upcomingEventSize == 0? View.INVISIBLE:View.VISIBLE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_reminder_upcoming"
+                    tools:listitem="@layout/item_reminder_upcoming" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_reminder_past"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{monthState.equals(`upcoming`)? View.GONE:View.VISIBLE }"
+                app:layout_constraintTop_toBottomOf="@id/constraint_reminder_upcoming">
+
+                <TextView
+                    android:id="@+id/tv_reminder_past"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:text="@string/reminder_past_title"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_reminder_empty_past"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:layout_marginBottom="48dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:text="@string/reminder_past_empty"
+                    android:textColor="@color/gray_cccccc"
+                    android:textSize="16dp"
+                    android:visibility="@{pastEventSize == 0? View.VISIBLE:View.INVISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_reminder_past" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_reminder_event_past"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:overScrollMode="never"
+                    android:visibility="@{pastEventSize == 0? View.INVISIBLE:View.VISIBLE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_reminder_past"
+                    tools:listitem="@layout/item_reminder_upcoming" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

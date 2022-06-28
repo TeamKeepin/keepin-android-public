@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="28dp"
+        android:paddingBottom="10dp"
+        tools:context=".util.UtilDialog">
+
+        <TextView
+            android:id="@+id/tv_dialog_base_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/black_343434"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@id/view_dialog_base_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_dialog_base_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="28dp"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:padding="8dp"
+            android:text="@string/base_dialog_confirm"
+            android:textColor="@color/green_15bd6f"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_dialog_base_divider" />
+
+        <TextView
+            android:id="@+id/tv_dialog_base_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:padding="8dp"
+            android:text="@string/base_dialog_cancel"
+            android:textColor="@color/gray_a5a5a5"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_dialog_base_confirm"
+            app:layout_constraintEnd_toStartOf="@id/tv_dialog_base_confirm"
+            app:layout_constraintTop_toTopOf="@id/tv_dialog_base_confirm" />
+
+        <View
+            android:id="@+id/view_dialog_base_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/gray_cccccc"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/tv_dialog_base_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_base_message" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

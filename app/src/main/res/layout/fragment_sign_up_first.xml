@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="signUpViewModel"
+            type="com.keepin.android.presentation.signup.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_sign_up_first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.signup.SignUpFirstFragment">
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_first_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_first_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="@{signUpViewModel.isFirstSuccess ? true : false}"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> signUpViewModel.emailCheck()}"
+            android:text="@string/sign_up_next"
+            android:textColor="@{signUpViewModel.isFirstSuccess ? @color/green_15bd6f : @color/gray_cccccc}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_sign_up_first_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_sign_up_first_back" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_first_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up"
+            android:textColor="@color/black_343434"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_up_first_back" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_email_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_first_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_first_title" />
+
+        <EditText
+            android:id="@+id/et_sign_up_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{signUpViewModel.email.trim().isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_email_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@={signUpViewModel.email}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_email_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_email_wrong"
+            android:textColor="@color/red_f17272"
+            android:textSize="14dp"
+            android:visibility="@{signUpViewModel.emailValid? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_email"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_email" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->signUpViewModel.clearText(signUpViewModel.email)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signUpViewModel.email.trim().isEmpty ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_up_email"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_email"
+            app:layout_constraintTop_toTopOf="@id/et_sign_up_email"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_password_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_first_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email_wrong" />
+
+        <EditText
+            android:id="@+id/et_sign_up_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{signUpViewModel.password.trim().isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_password_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textPassword"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@={signUpViewModel.password}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->signUpViewModel.clearText(signUpViewModel.password)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signUpViewModel.password.trim().isEmpty ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_up_password"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_password"
+            app:layout_constraintTop_toTopOf="@id/et_sign_up_password"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_password_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_password_wrong"
+            android:textColor="@color/red_f17272"
+            android:textSize="14dp"
+            android:visibility="@{signUpViewModel.passwordValid ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_password"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_password" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_password_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/gmarket_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_password_check_title"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tv_sign_up_first_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password_wrong" />
+
+        <EditText
+            android:id="@+id/et_sign_up_password_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@{signUpViewModel.passwordCheck.trim().isEmpty ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_password_check_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textPassword"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@={signUpViewModel.passwordCheck}"
+            android:textColor="@color/black_343434"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password_check" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_password_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->signUpViewModel.clearText(signUpViewModel.passwordCheck)}"
+            android:src="@drawable/ic_input_delete"
+            android:visibility="@{signUpViewModel.passwordCheck.trim().isEmpty ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_sign_up_password_check"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_password_check"
+            app:layout_constraintTop_toTopOf="@id/et_sign_up_password_check"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_password_check_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/sign_up_password_check_wrong"
+            android:textColor="@color/red_f17272"
+            android:textSize="14dp"
+            android:visibility="@{signUpViewModel.isSamePassword? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@id/et_sign_up_password_check"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_password_check" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

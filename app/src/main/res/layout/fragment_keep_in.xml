@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="keepInViewModel"
+            type="com.keepin.android.presentation.keepin.KeepInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_keep_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.keepin.KeepInFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_keep_in_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_keep_in_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_keep_in_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_keep_in_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/keep_in_register_keep_in"
+                android:textColor="@color/gray_cccccc"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/btn_keep_in_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_keep_in_close" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_keep_in_tool_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_keep_in_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:src="@drawable/border_green_circle"
+                    app:layout_constraintEnd_toStartOf="@id/tv_keep_in_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_title"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_keep_in_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="35dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_register_title"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/gmarket_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_max_title"
+                    android:textColor="@color/gray_a5a5a5"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@id/tv_keep_in_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_title" />
+
+                <EditText
+                    android:id="@+id/et_keep_in_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/selector_keep_in_et"
+                    android:fontFamily="@font/noto_regular"
+                    android:hint="@string/keep_in_hint_title"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="5dp"
+                    android:singleLine="true"
+                    android:text="@={keepInViewModel.keepInTitle}"
+                    android:textColor="@color/black_343434"
+                    android:textColorHint="@color/gray_cccccc"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_title" />
+
+                <ImageView
+                    android:id="@+id/ic_keep_in_essential_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:src="@drawable/border_green_circle"
+                    app:layout_constraintEnd_toStartOf="@id/layout_keep_in_photo"
+                    app:layout_constraintTop_toTopOf="@id/layout_keep_in_photo"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_keep_in_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="42dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_keep_in_title">
+
+                    <TextView
+                        android:id="@+id/tv_keep_in_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gmarket_medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/keep_in_register_photo"
+                        android:textColor="@color/black_343434"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/gmarket_light"
+                        android:includeFontPadding="false"
+                        android:text="@string/keep_in_max_photo"
+                        android:textColor="@color/gray_a5a5a5"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toEndOf="@id/tv_keep_in_photo"
+                        app:layout_constraintTop_toTopOf="@id/tv_keep_in_photo" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_keep_in_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toStartOf="@id/btn_keep_in_new_photo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_keep_in_photo"
+                        android:layout_marginTop="20dp"
+                        tools:listitem="@layout/item_keep_in_photo" />
+
+                    <ImageButton
+                        android:id="@+id/btn_keep_in_new_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_keep_in_register_photo"
+                        android:visibility="@{keepInViewModel.imgList.size == 3? View.GONE : View.VISIBLE}"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toEndOf="@id/rv_keep_in_photo"
+                        app:layout_constraintTop_toBottomOf="@id/tv_keep_in_photo"
+                        android:layout_marginTop="20dp"
+                        tools:ignore="ContentDescription" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:src="@drawable/border_green_circle"
+                    app:layout_constraintEnd_toStartOf="@id/tv_keep_in_type"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_type"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_keep_in_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="42dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_register_type"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_keep_in_photo" />
+
+                <CheckBox
+                    android:id="@+id/btn_keep_in_type_get"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/selector_keep_in_type_btn"
+                    android:button="@null"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_type_get"
+                    android:textColor="@drawable/selector_keep_in_answer_text_color"
+                    android:textSize="14dp"
+                    app:layout_constraintDimensionRatio="h, 1:0.273"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_type"
+                    app:layout_constraintWidth_percent="0.447" />
+
+                <CheckBox
+                    android:id="@+id/btn_keep_in_type_give"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/selector_keep_in_type_btn"
+                    android:button="@null"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_type_give"
+                    android:textColor="@drawable/selector_keep_in_answer_text_color"
+                    android:textSize="14dp"
+                    app:layout_constraintDimensionRatio="h, 1:0.273"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/btn_keep_in_type_get"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_type"
+                    app:layout_constraintWidth_percent="0.447" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:src="@drawable/border_green_circle"
+                    app:layout_constraintEnd_toStartOf="@id/tv_keep_in_friend"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_friend"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_keep_in_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="42dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_register_friend"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_keep_in_type_get" />
+
+                <EditText
+                    android:id="@+id/et_keep_in_friend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@{keepInViewModel.keepInFriendName.length() == 0 ? @drawable/border_gray_line_under : @drawable/border_black_line_under}"
+                    android:focusable="false"
+                    android:fontFamily="@font/noto_regular"
+                    android:hint="@string/keep_in_hint_friend"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:paddingStart="33dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="6dp"
+                    android:singleLine="true"
+                    android:text="@{keepInViewModel.keepInFriendName}"
+                    android:textColor="@color/black_343434"
+                    android:textColorHint="@color/gray_cccccc"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_friend" />
+
+                <ImageView
+                    android:id="@+id/ic_friend_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_search_gray"
+                    app:layout_constraintBottom_toBottomOf="@id/et_keep_in_friend"
+                    app:layout_constraintStart_toStartOf="@id/et_keep_in_friend"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:src="@drawable/border_green_circle"
+                    app:layout_constraintEnd_toStartOf="@id/tv_keep_in_when"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_when"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_keep_in_when"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="42dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_register_when"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_keep_in_friend" />
+
+                <EditText
+                    android:id="@+id/et_keep_in_when"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/selector_keep_in_et"
+                    android:focusable="false"
+                    android:fontFamily="@font/noto_regular"
+                    android:hint="@string/keep_in_hint_when"
+                    android:includeFontPadding="false"
+                    android:inputType="date"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="5dp"
+                    android:singleLine="true"
+                    android:text="@{keepInViewModel.selectedKeepInData}"
+                    android:textColor="@color/black_343434"
+                    android:textColorHint="@color/gray_cccccc"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_when" />
+
+                <TextView
+                    android:id="@+id/tv_keep_in_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="42dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_register_category"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_keep_in_when" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/gmarket_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_max_category"
+                    android:textColor="@color/gray_a5a5a5"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@id/tv_keep_in_category"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_category" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_keep_in_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_category">
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_birth"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_birth"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_anniversary"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_anniversary"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/btn_keep_in_category_birth"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_celeb"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_celeb"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/btn_keep_in_category_anniversary"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_compliment"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_compliment"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/btn_keep_in_category_celeb"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_support"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_support"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_keep_in_category_birth"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_thanks"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_thanks"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/btn_keep_in_category_support"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_surprise"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_surprise"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/btn_keep_in_category_thanks"
+                        app:layout_constraintWidth_percent="0.231" />
+
+                    <CheckBox
+                        android:id="@+id/btn_keep_in_category_etc"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/selector_keep_in_category_btn"
+                        android:button="@null"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="@string/category_etc"
+                        android:textColor="@drawable/selector_keep_in_answer_text_color"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="h, 1:0.434"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/btn_keep_in_category_surprise"
+                        app:layout_constraintWidth_percent="0.231" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_keep_in_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="42dp"
+                    android:fontFamily="@font/gmarket_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_register_memo"
+                    android:textColor="@color/black_343434"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_keep_in_category" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/gmarket_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/keep_in_max_memo"
+                    android:textColor="@color/gray_a5a5a5"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_keep_in_memo"
+                    app:layout_constraintStart_toEndOf="@id/tv_keep_in_memo"
+                    app:layout_constraintTop_toTopOf="@id/tv_keep_in_memo" />
+
+                <EditText
+                    android:id="@+id/et_keep_in_memo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="42dp"
+                    android:background="@{keepInViewModel.keepInMemo.length() == 0? @drawable/border_gray_line_12 : @drawable/border_black_line_12 }"
+                    android:ems="12"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="top"
+                    android:hint="@string/keep_in_hint_memo"
+                    android:includeFontPadding="false"
+                    android:inputType="textMultiLine"
+                    android:isScrollContainer="false"
+                    android:maxLength="200"
+                    android:minHeight="180dp"
+                    android:paddingHorizontal="18dp"
+                    android:paddingVertical="16dp"
+                    android:text="@={keepInViewModel.keepInMemo}"
+                    android:textColor="@color/black_343434"
+                    android:textColorHint="@color/gray_cccccc"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_keep_in_memo" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
